@@ -1,10 +1,11 @@
 def affine(x, W, b):
-    #　x * W +b -> y
+    #　W * x +b -> output
     y = inner( x, w)
     y = plus ( y, b)
     return y
 
-def inner(x,y):
+def inner(y,x):
+    # x・y -> output
     n = len(x)
     m = len(y)
     l = len(y[0])
