@@ -1,7 +1,7 @@
 def affine(x, W, b):
     #　W * x +b -> output
-    y = inner( x, w)
-    y = plus ( y, b)
+    y = inner(x, W)
+    y = plus (y, b)
     return y
 
 def inner(y,x):
@@ -11,7 +11,7 @@ def inner(y,x):
     l = len(y[0])
     if len(x[0]) != m:
         print("Error: inner size")
-        break
+        exit
     else:
         #xのサイズが n*m になっていると想定
         #yのサイズは　m*l
@@ -38,3 +38,17 @@ def plus(x,y):
                 x[i][j] += y[i][j]
     
     return x
+
+if __name__ == "__main__":
+    import numpy as np
+    a = [[(i+1)*(j+1) for i in range(5)] for j in range(3)]
+    W = [[i*2 for i in range(3)] for j in range(4) ]
+    b = [[3-i for i in range(5)] for j in range(4)]
+    print(a,W)
+    print(b)
+    y = affine(a,W,b)
+    nx = np.array(a)
+    nW = np.array(W)
+    nb = np.array(b)
+    ny = np.dot(nW, nx) + b
+    print(ny == y)
